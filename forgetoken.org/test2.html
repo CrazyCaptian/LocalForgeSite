@@ -1,0 +1,114 @@
+<button type="button" class="zenableEthereumButton22">Add Our Tokens</button><br>
+	<button type="button" class="zenableEthereumButton222">Add 0xBTC Tokens</button>
+	<br>
+	<button type="button" class="zenableEthereumButton2222">Add LP Tokens</button>       
+	<script>
+	let accounts = [];
+	//Sending Ethereum to an address
+	//
+	const ethereumButton22ff = document.querySelector('.zenableEthereumButton22');
+
+	ethereumButton22ff.addEventListener('click', () => {
+		getAccount22ff();
+
+
+	});
+
+
+	async function getAccount() {
+	accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+	showAccount.innerHTML = accounts;
+	console.log(accounts);
+	}
+
+
+	async function getAccount22ff() {
+	    
+	    
+	try {
+	await ethereum.request({
+	method: 'wallet_switchEthereumChain',
+	params: [{ chainId: '0x89' }],
+	});
+	} catch (switchError) {
+	// This error code indicates that the chain has not been added to MetaMask.
+	if (switchError.code === 4902) {
+	try {
+	  await ethereum.request({
+	    method: 'wallet_addEthereumChain',
+	    params: [{ chainId: '0x89', 
+	    chainName: 'Polygon Mainnet',
+	    nativeCurrency: {
+		name: 'MATIC',
+		symbol: 'MATIC', // 2-6 characters long
+		decimals: 18
+	    },
+	    blockExplorerUrls: ['https://polygonscan.com/'],
+	    rpcUrls: ['https://polygon-rpc.com/'] }],
+	  });
+	} catch (addError) {
+	  // handle "add" error
+	}
+	}
+	// handle other "switch" errors
+	}		
+	    
+	    const tokenAddress1 = '0xF44fB43066F7ECC91058E3A614Fb8A15A2735276';
+	    const tokenSymbol1 = 'Forge';
+	    const tokenDecimals1 = 18;
+	    const tokenImage1 = 'https://forgetoken.org/static/media/pow2.56016ef0.png';
+	    const tokenAddress2 = '0x71b821aa52a49f32eed535fca6eb5aa130085978';
+	    const tokenSymbol2 = '0xBTC';
+	    const tokenDecimals2 = 8;
+	    const tokenImage2 = 'https://polygonscan.com/token/images/0xbitcoin_32.png';
+
+		                                               
+	    
+
+	// wasAdded is a boolean. Like any RPC method, an error may be thrown.
+	const success = ethereum.request({
+    method: 'metamask_watchAsset',
+    params: {
+      type: 'ERC20',
+      options: {
+        address: '0xF44fB43066F7ECC91058E3A614Fb8A15A2735276',
+        symbol: 'Fge',
+        decimals: 18,
+        image: 'https://forgetoken.org/static/media/pow2.56016ef0.png',
+      },
+    },
+  }).then((success) => {
+    if (success) {
+      console.log('FOO successfully added to wallet!');
+    } else {
+      throw new Error('Something went wrong.');
+    }
+  })
+  .catch(console.error);
+		
+
+console.log('Thanks for your interes3t!')
+		const success2 = ethereum.request({
+    method: 'wallet_watchAsset',
+    params: {
+      type: 'ERC20',
+      options: {
+        address: '0x71b821aa52a49f32eed535fca6eb5aa130085978',
+        symbol: '222',
+        decimals: 18,
+        image: 'https://polygonscan.com/token/images/0xbitcoin_32.png',
+      },
+    },
+  }).then((success2) => {
+    if (success2) {
+      console.log('FOO successfully added to wallet!');
+    } else {
+      throw new Error('Something went wrong.');
+    }
+  })
+  .catch(console.error);
+		
+}
+console.log('Thanks for your interes4t!')
+
+	</script>
