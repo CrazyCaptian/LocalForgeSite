@@ -370,10 +370,18 @@ function sleep(ms) {
 function updateStatsThatHaveDependencies(stats) {
   /* estimated hashrate */
   difficulty = getValueFromStats('Mining Difficulty', stats)
+  if(mining_calculator_app) {
+    mining_calculator_app.setCurrentDifficulty(difficulty);
+    mining_calculator_app.useCurrentDiff();
+  }
+
   /* supply remaining in era */
   max_supply_for_era = getValueFromStats('Max Mined Supply for Current Era', stats)
   current_supply = getValueFromStats('Tokens distributed via Mining', stats)
   current_reward = getValueFromStats('Current Mining Reward per 48 minute Solve', stats)
+  if(mining_calculator_app) {
+    mining_calculator_app.setBlockReward(current_reward);
+  }
   supply_remaining_in_era = max_supply_for_era - current_supply; /* TODO: probably need to round to current mining reward */
   rewards_blocks_remaining_in_era = supply_remaining_in_era / current_reward;
 
@@ -459,9 +467,9 @@ el_safe('#TimeRemaininginAuction').innerHTML = "<b>" + '<progress value="'+tt2+'
                                                            rewards_since_readjustment);
 */
   el_safe('#MiningDifficulty').innerHTML += "  <span style='font-size:0.8em;'>(next: ~" + new_mining_difficulty.toLocaleString() + ")</span>";
-  /*if(mining_calculator_app) {
+  if(mining_calculator_app) {
     mining_calculator_app.setNextDifficulty(new_mining_difficulty);
-  }*/
+  }
 
   /* estimated hashrate */
   hashrate = difficulty * _HASHRATE_MULTIPLIER / _IDEAL_BLOCK_TIME_SECONDS;

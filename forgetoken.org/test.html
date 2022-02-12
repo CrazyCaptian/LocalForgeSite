@@ -1,10 +1,9 @@
-
 <html>
 	<body>
-	<button type="button" class="zenableEthereumButton22">Add Our Tokens</button><br>
-	<button type="button" class="zenableEthereumButton222">Add 0xBTC Tokens</button>
+	<button type="button" class="zenableEthereumButton22 btn btn-hover color-1 glowing addedstylebutton">Add Our Tokens</button><br>
+	<button type="button" class="zenableEthereumButton222 btn btn-hover color-1 glowing addedstylebutton">Add 0xBTC Tokens</button>
 	<br>
-	<button type="button" class="zenableEthereumButton2222">Add LP Tokens</button>       
+	<button type="button" class="zenableEthereumButton2222 btn btn-hover color-1 glowing addedstylebutton">Add LP Tokens</button>       
 	<script>
 	let accounts = [];
 	//Sending Ethereum to an address
@@ -12,17 +11,10 @@
 	const ethereumButton22ff = document.querySelector('.zenableEthereumButton22');
 
 	ethereumButton22ff.addEventListener('click', () => {
-		getAccount22ff();
-
+		let hello = getAccount22ff();
+		hello.then(console.log);
 
 	});
-
-
-	async function getAccount() {
-	accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-	showAccount.innerHTML = accounts;
-	console.log(accounts);
-	}
 
 
 	async function getAccount22ff() {
@@ -56,18 +48,16 @@
 	// handle other "switch" errors
 	}		
 	    
-	    await new Promise(r => setTimeout(r, 20));
-	    accounts = await ethereum.request({ method: 'eth_requestAccounts' });
 	    const tokenAddress1 = '0xF44fB43066F7ECC91058E3A614Fb8A15A2735276';
 	    const tokenSymbol1 = 'Forge';
 	    const tokenDecimals1 = 18;
 	    const tokenImage1 = 'https://forgetoken.org/static/media/pow2.56016ef0.png';
 
 		                                       
-console.log('Thanks for your interest!')
+
 	try {
 	// wasAdded is a boolean. Like any RPC method, an error may be thrown.
-	const wasAdded = await ethereum.request({
+	const wasAdded = ethereum.request({
 	method: 'wallet_watchAsset',
 	params: {
 	  type: 'ERC20', // Initially only supports ERC20, but eventually more!
@@ -80,8 +70,9 @@ console.log('Thanks for your interest!')
 	  },
 	},
 	});
+	await wasAdded
 
-console.log('Thanks for your interest3!')
+
 
 	if (wasAdded) {
 		console.log('Thanks for your interest!');
@@ -90,16 +81,11 @@ console.log('Thanks for your interest3!')
 	}
 	} catch (error) {
 		console.log(error);
-console.log('Thanks for your interest2!')
 	}
 	}
 
 
 
-
-	</script>
-
-	<script>
 
 
 	//Sending Ethereum to an address
@@ -113,45 +99,10 @@ console.log('Thanks for your interest2!')
 	});
 
 
-	async function getAccount() {
-		accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-		showAccount.innerHTML = accounts;
-		console.log(accounts);
-	}
 
 	async function getAccount22fff() {
 	    
 	    
-	    try {
-	      await ethereum.request({
-		method: 'wallet_switchEthereumChain',
-		params: [{ chainId: '0x89' }],
-	      });
-	    } catch (switchError) {
-	      // This error code indicates that the chain has not been added to MetaMask.
-	      if (switchError.code === 4902) {
-		try {
-		  await ethereum.request({
-		    method: 'wallet_addEthereumChain',
-		    params: [{ chainId: '0x89', 
-		    chainName: 'Polygon Mainnet',
-		    nativeCurrency: {
-		        name: 'MATIC',
-		        symbol: 'MATIC', // 2-6 characters long
-		        decimals: 18
-		    },
-		    blockExplorerUrls: ['https://polygonscan.com/'],
-		    rpcUrls: ['https://polygon-rpc.com/'] }],
-		  });
-		} catch (addError) {
-		  // handle "add" error
-		}
-	      }
-	      // handle other "switch" errors
-	    }		
-		    
-	    await new Promise(r => setTimeout(r, 20));
-	    accounts = await ethereum.request({ method: 'eth_requestAccounts' });
 	    const tokenAddress2 = '0x71b821aa52a49f32eed535fca6eb5aa130085978';
 	    const tokenSymbol2 = '0xBTC';
 	    const tokenDecimals2 = 8;
@@ -161,7 +112,7 @@ console.log('Thanks for your interest2!')
 	    
 	    try {
 	      // wasAdded is a boolean. Like any RPC method, an error may be thrown.
-	      const wasAdded = ethereum.request({
+	      const wasAdded = await ethereum.request({
 		method: 'wallet_watchAsset',
 		params: {
 		  type: 'ERC20', // Initially only supports ERC20, but eventually more!
@@ -200,12 +151,6 @@ console.log('Thanks for your interest2!')
   });
   
   
-  async function getAccount() {
-    accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-    showAccount.innerHTML = accounts;
-   console.log(accounts);
-  }
-
     async function getAccount22ffff() {
           
           
@@ -237,12 +182,10 @@ console.log('Thanks for your interest2!')
             // handle other "switch" errors
           }		
                   
-          await new Promise(r => setTimeout(r, 20));                                   
-          accounts = await ethereum.request({ method: 'eth_requestAccounts' });
           const tokenAddress3 = '0x562322f8e7131d0bb9f487ae566935d3be96406b';
           const tokenSymbol3 = "Frg LP";
           const tokenDecimals3 = 18;
-          const tokenImage3 = 'https://forgetoken.org/dapps/static/media/eth.6e1743e3.png';
+          const tokenImage3 = 'https://forgetoken.org/dapp/static/media/eth.6e1743e3.png';
           try {
             // wasAdded is a boolean. Like any RPC method, an error may be thrown.
             const wasAdded = await ethereum.request({
@@ -278,4 +221,3 @@ console.log('Thanks for your interest2!')
 
 </html>
 
-<!--Bootstrap was used for this project because of the access to key website dev features, and also to make scalability between devices smooth.-->

@@ -127,10 +127,16 @@ class contractValueOverTime {
     eth_block_num = Math.round(eth_block_num)
 
     //log('requested', this.storage_index, '@ block', eth_block_num)
-
+console.log("F ",this.storage_index);
+console.log("F2 ",eth_block_num.toString(10));
+var eb = eth_block_num.toString(10)
+if(eth_block_num.toString(10) > 22222839431)
+{
+  eb = "22839431"
+}
     this.eth.getStorageAt(this.contract_address, 
                           new Eth.BN(this.storage_index, 10),
-                          eth_block_num.toString(10))
+                          eb)
     .then(
       this._getSaveStateFunction(this.states, eth_block_num, retry_delay)
     ).catch(async (error) => {
